@@ -1,0 +1,21 @@
+-Guide: https://singularity.lbl.gov/install-mac#option-1-singularityware-vagrant-box
+
+brew cask install virtualbox
+brew cask install vagrant
+brew cask install vagrant-manager
+
+mkdir singularity-vm
+cd singularity-vm
+
+vagrant init singularityware/singularity-2.4
+vagrant up
+vagrant ssh
+
+
+Create a vagrant machine with singularity installed, than alter the memory limit for it on the Vagrantfile by adding:
+ config.vm.provider "virtualbox" do |vb|
+     # Customize the amount of memory on the VM:
+     vb.memory = "1024" #Change here
+ end
+*This did not help imediatly, I had to reload the machine using vagrant
+*This memory matter may become a problem

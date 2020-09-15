@@ -1,0 +1,48 @@
+Creating a container to execute VINCE code.
+
+Create a vagrant machine with singularity installed, than alter the memory limit for it on the Vagrantfile by adding:
+ config.vm.provider "virtualbox" do |vb|
+     # Customize the amount of memory on the VM:
+     vb.memory = "1024" #Change here
+ end
+*This did not help imediatly, I had to reload the machine using vagrant
+*This memory matter may become a problem
+
+#Right path
+Inside the vangrant singularity machine:
+sudo singularity build --sandbox vince_container docker://python:3.6
+sudo singularity shell --writable vince_container/
+git clone https://github.com/danielgordon10/vince.git
+cd vince
+pip install -r requirements.txt
+pip install MulticoreTSNE
+
+
+
+
+#One path - Failed
+Inside the vangrant singularity machine:
+sudo singularity build --sandbox vince_container docker://python:3.6
+
+Inside the vince_container (singularity shell vince_container)
+git clone https://github.com/danielgordon10/vince.git
+cd vince
+pip install -r requirements.txt -t /usr/local/lib/python3.6/site-packages/
+/home/vagrant/.local/bin # Add to path
+
+
+#Other path -- Failed
+sudo singularity build --sandbox vince_container docker://ubuntu:18.04
+sudo singularity shell --writable vince_container/
+apt-get install python3.6
+update-alternatives --install /usr/bin/python python /usr/bin/python3.6 10
+apt-get install python3-pip
+update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10
+apt install git
+git clone https://github.com/danielgordon10/vince.git
+cd vince/
+pip install scikit-build
+#Erase last line of requirements.txt
+pip install -r requirements.txt
+
+
