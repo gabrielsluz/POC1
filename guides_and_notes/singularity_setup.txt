@@ -17,5 +17,7 @@ Create a vagrant machine with singularity installed, than alter the memory limit
      # Customize the amount of memory on the VM:
      vb.memory = "1024" #Change here
  end
-*This did not help imediatly, I had to reload the machine using vagrant
+ config.vm.synced_folder "datasets/", "/datasets"
+*Also create shared folder for datasets
+*This did not help immediately, I had to reload the machine using vagrant
 *This memory matter may become a problem

@@ -1,12 +1,5 @@
 Creating a container to execute VINCE code.
-
-Create a vagrant machine with singularity installed, than alter the memory limit for it on the Vagrantfile by adding:
- config.vm.provider "virtualbox" do |vb|
-     # Customize the amount of memory on the VM:
-     vb.memory = "1024" #Change here
- end
-*This did not help imediatly, I had to reload the machine using vagrant
-*This memory matter may become a problem
+Follow the singularity setup
 
 #Right path
 Inside the vangrant singularity machine:
@@ -16,6 +9,11 @@ git clone https://github.com/danielgordon10/vince.git
 cd vince
 pip install -r requirements.txt
 pip install MulticoreTSNE
+mkdir datasets
+Cntrl + d
+sudo singularity shell -B /datasets:/root/datasets --writable vince_container/
+
+
 
 
 
