@@ -13,6 +13,9 @@ mkdir datasets
 Cntrl + d
 sudo singularity shell -B /datasets:/root/datasets --writable vince_container/
 
+#The datasets is a shared folder and can be used to exchange files between host and guest.
+apt-get update
+apt-get install vim
 
 
 
