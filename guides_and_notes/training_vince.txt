@@ -1,0 +1,38 @@
+#Training with VINCE code
+https://github.com/danielgordon10/vince
+
+One good way can be to create a dataset following the r2v2 format and use the R2V2 dataset class.
+Which is the r2v2 format ?:
+    The file name of an image format ".jpg" denotes its source video and frame number:
+    12_000001.jpg denotes video 12, frame 1.
+    The dataset must be inside a folder divided into two other folders: train and val
+    Train and val are also composed of folders with underline followed by
+    letter prefixes, each containing several images. The prefixes of files and folders might be important.
+
+It seems to be a bug on the CIFAR loading part, a way out is to train in debugging mode by using the args:
+    --no-save \
+    --no-restore \
+    This bug may need to be fixed to properly train.
+
+It requires a GPU to train, how to adapt it for using a CPU ? **Adapting is hard and not worth it.
+    https://stackoverflow.com/questions/54544986/need-to-change-gpu-option-to-cpu-in-a-python-pytorch-based-code
+    Places of the code that reference torch.device:
+        vince_model.py
+        vince_solver.py
+        base_solver.py
+        Other files, that may not be important for now
+    We have feature_extractor_device and device
+    Places to change:
+        vince_model.py:
+            lines 35-36:
+                self.feature_extractor = pt_util.get_data_parallel(self.feature_extractor, args.feature_extractor_gpu_ids)
+                self.feature_extractor_device = args.feature_extractor_gpu_ids[0]
+
+                pt_util.get_data_parallel is from another repository.
+                https://github.com/danielgordon10/dg_util/blob/master/dg_util/python_utils/pytorch_util.py 
+                If it receives device_ids = None or len = 1, it returns DummyScope.
+                I will try to make it return DummyScope.
+
+                feature_extractor_device receives the gpu_ids, so we may have to alter this in another part.
+                
+Now I will try to train it on Google Colab
