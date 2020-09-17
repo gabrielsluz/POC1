@@ -43,7 +43,9 @@ for i in range(num_videos_train):
     for j in range(num_frames):
         im = Image.fromarray(mmnist_dataset[j,i,:,:])
         file_name = gen_file_name(folder_path, '__', i, j)
-        im.save(file_name)
+        rgbimg = Image.new("RGB", im.size)
+        rgbimg.paste(im)
+        rgbimg.save(file_name)
 
 folder_path = "./mmnist_images/val/"
 os.mkdir(folder_path)
@@ -53,4 +55,6 @@ for i in range(num_videos_train, num_videos):
     for j in range(num_frames):
         im = Image.fromarray(mmnist_dataset[j,i,:,:])
         file_name = gen_file_name(folder_path, '__', i, j)
-        im.save(file_name)
+        rgbimg = Image.new("RGB", im.size)
+        rgbimg.paste(im)
+        rgbimg.save(file_name)
