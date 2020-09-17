@@ -6,7 +6,7 @@ How is the r2v2 format ?
     The dataset must be inside a folder divided into two other folders: train and val
     Train and val are also composed of folders with underline followed by
     letter prefixes, each containing several images. The folder name is used as a prefix
-    for the image files. 
+    for the image files. The images must be RGB
 Where will it be saved ?
     In a folder called mmnist_images with folders train and val inside. 
     Inside each one there will be a single folder 
