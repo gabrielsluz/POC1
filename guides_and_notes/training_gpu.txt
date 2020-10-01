@@ -1,6 +1,6 @@
 Important notes for training with a GPU remotely inside a Singularity container.
 
-- Datasets must be kept in the storage.
+- Datasets must be kept in the storage. => '/srv/storage/datasets/gabrielsluz/'
 - Always check if there is someone using the CPU or the GPU
 - Use window multiplex to inspect the training
 - Check if the GPU is being used corectly
