@@ -3,6 +3,8 @@ Important notes for training with a GPU remotely inside a Singularity container.
 Container:
 - Know how to stop the container
 - Use a .simg container to run experiments
+- Keep the container in image format in the home (network) folder
+- It may be needed to bind the /srv/storage/datasets/gabrielsluz/ to a folder in the container
 
 GPU usage:
 - Always check if there is someone using the CPU or the GPU
@@ -15,3 +17,15 @@ Storage:
 - Which results => Prefer more than less, as the experiments are quite expensive. 
     - The model may be a must.
     - Validation and training errors
+
+
+
+Testing GPU:
+- Create a singularity container (may need to be cuda container)
+- Put the teste_gpu.py in it
+- Create /MNIST dir
+- Bind the /srv/storage/datasets/gabrielsluz/ to /MNIST in the container
+- Create the simg container
+- Run it on the machine
+- Test the command: nvidia-smi
+- Test the teste_gpu.py, by running: python teste_gpu.py -- epochs 1
