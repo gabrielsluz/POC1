@@ -1,4 +1,4 @@
-Important notes for training with a GPU remotely inside a Singularity container.
+-| Important notes for training with a GPU remotely inside a Singularity container.
 
 Container:
 - Know how to stop the container
@@ -20,11 +20,21 @@ Storage:
 
 
 
-Testing GPU:
-- Create a singularity container (may need to be cuda container)
+-| Testing GPU:
+- Create a singularity container (may need to be cuda container):
+sudo singularity build --sandbox mnist_test docker://python:3.6
+sudo singularity shell --writable mnist_test/
+
 - Put the teste_gpu.py in it
+git clone https://github.com/gabrielsluz/POC1.git
+
 - Create /MNIST dir
+mkdir /MNIST
+
 - Bind the /srv/storage/datasets/gabrielsluz/ to /MNIST in the container
+CNTRL-d
+sudo singularity shell -B /srv/storage/datasets/gabrielsluz:/MNIST --writable mnist_test/
+
 - Create the simg container
 - Run it on the machine
 - Test the command: nvidia-smi
