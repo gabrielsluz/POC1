@@ -5,6 +5,8 @@ Container:
 - Use a .simg container to run experiments
 - Keep the container in image format in the home (network) folder
 - It may be needed to bind the /srv/storage/datasets/gabrielsluz/ to a folder in the container
+- Containers can only be created in proc2 or echer /srv/forge
+- Only use sudo when needed.
 
 GPU usage:
 - Always check if there is someone using the CPU or the GPU
@@ -21,12 +23,13 @@ Storage:
 
 
 -| Testing GPU:
-- Create a singularity container (may need to be cuda container):
+- Create a singularity container in echer or proc2 /srv/forge (may need to be cuda container):
 sudo singularity build --sandbox mnist_test docker://python:3.6
 sudo singularity shell --writable mnist_test/
 
-- Put the teste_gpu.py in it
+- Put the teste_gpu.py in it and install requirements
 git clone https://github.com/gabrielsluz/POC1.git
+pip install -r ./POC1/gpu_test/requirements.txt
 
 - Create /MNIST dir
 mkdir /MNIST
@@ -35,7 +38,7 @@ mkdir /MNIST
 CNTRL-d
 sudo singularity shell -B /srv/storage/datasets/gabrielsluz:/MNIST --writable mnist_test/
 
-- Create the simg container
-- Run it on the machine
+- Create the simg container: sudo singularity build my_ubuntu.simg my_container/
+- Run it on the machine (Check everything you need to check to use the gpu)
 - Test the command: nvidia-smi
-- Test the teste_gpu.py, by running: python teste_gpu.py -- epochs 1
+- Test the teste_gpu.py, by running: python ./POC1/gpu_test/teste_gpu.py --epochs 1

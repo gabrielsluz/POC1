@@ -1,5 +1,5 @@
 #This code is a test for remote gpu training inside a singularity container.
-#Baesd on https://github.com/pytorch/examples/blob/master/mnist/main.py
+#Baesd on https://github.com/pytorch/examples/blob/master/MNIST/main.py
 from __future__ import print_function
 import argparse
 import torch
@@ -113,9 +113,9 @@ def main():
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
         ])
-    dataset1 = datasets.MNIST('/MNIST', train=True, download=True,
+    dataset1 = datasets.MNIST('~/MNIST', train=True, download=True,
                        transform=transform)
-    dataset2 = datasets.MNIST('/MNIST', train=False,
+    dataset2 = datasets.MNIST('~/MNIST', train=False,
                        transform=transform)
     train_loader = torch.utils.data.DataLoader(dataset1,**kwargs)
     test_loader = torch.utils.data.DataLoader(dataset2, **kwargs)
@@ -130,7 +130,7 @@ def main():
         scheduler.step()
 
     if args.save_model:
-        torch.save(model.state_dict(), "/MNIST/mnist_cnn.pt")
+        torch.save(model.state_dict(), "~/MNIST/MNIST_cnn.pt")
 
 
 if __name__ == '__main__':
