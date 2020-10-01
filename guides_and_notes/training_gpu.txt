@@ -1,0 +1,12 @@
+Important notes for training with a GPU remotely inside a Singularity container.
+
+- Datasets must be kept in the storage.
+- Always check if there is someone using the CPU or the GPU
+- Use window multiplex to inspect the training
+- Check if the GPU is being used corectly
+- Know how to stop the container
+- Where to keep the results and best models ? => Storage seems a good option
+- Which results => Prefer more than less, as the experiments are quite expensive. 
+    - The model may be a must.
+    - Validation and training errors
+- Use a .simg container to run experiments
