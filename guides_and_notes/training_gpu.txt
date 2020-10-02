@@ -21,6 +21,16 @@ Storage:
     - The model may be a must.
     - Validation and training errors
 
+-| Testing GPU - Generating image on local computer
+-In the machine which has singularity,
+mkdir mnist_test
+cd mnist_test
+git clone https://github.com/gabrielsluz/POC1.git
+sudo singularity build mnist_test.simg ./POC1/gpu_test/Singularity
+
+-Get into the container
+singularity shell -B /datasets/:/datasets/ mnist_test.simg 
+
 
 
 -| Testing GPU:
