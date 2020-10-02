@@ -36,3 +36,4 @@ It requires a GPU to train, how to adapt it for using a CPU ? **Adapting is hard
                 feature_extractor_device receives the gpu_ids, so we may have to alter this in another part.
                 
 Now I will try to train it on Google Colab
+Ran out of memory
