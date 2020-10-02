@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: python:3.6
+From: cuda:10.1-base-ubuntu18.04
 
 %post
 

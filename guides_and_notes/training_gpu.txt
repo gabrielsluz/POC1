@@ -21,7 +21,7 @@ Storage:
     - The model may be a must.
     - Validation and training errors
 
--| Testing GPU - Generating image on local computer
+-| Testing GPU - Generating image on local computer ** Was not able to find gpu
 -In the machine which has singularity,
 mkdir mnist_test
 cd mnist_test
@@ -30,6 +30,17 @@ sudo singularity build mnist_test.simg ./POC1/gpu_test/Singularity
 
 -Get into the container
 singularity shell -B /datasets/:/datasets/ mnist_test.simg 
+python ./POC1/gpu_test/teste_gpu.py --epochs 1
+
+-To test on a server: **Always check everything needed
+vpc to the server or just get the container to the server:
+    scp mnist_test.simg gabrielluz@login.dcc.ufmg.br:/home/grad/ccomp/17/gabrielluz/mnist_test.simg
+    
+ssh
+git clone https://github.com/gabrielsluz/POC1.git
+singularity shell -B /srv/storage/datasets/gabrielsluz/:/datasets/ mnist_test.simg 
+python ./POC1/gpu_test/teste_gpu.py --epochs 1
+
 
 
 
@@ -46,12 +57,12 @@ pip install -r ./POC1/gpu_test/requirements.txt
 CNTRL-d 
 singularity shell --writable mnist_test/
 
-- Create /MNIST dir
-mkdir ~/MNIST
+- Create /datasets dir
+mkdir /datasets
 
-- Bind the /srv/storage/datasets/gabrielsluz/ to /MNIST in the container
+- Bind the /srv/storage/datasets/gabrielsluz/ to /datasets in the container
 CNTRL-d
-sudo singularity shell -B /srv/storage/datasets/gabrielsluz:/MNIST --writable mnist_test/
+sudo singularity shell -B /srv/storage/datasets/gabrielsluz:/datasets --writable mnist_test/
 
 - Create the simg container: sudo singularity build my_ubuntu.simg my_container/
 - Run it on the machine (Check everything you need to check to use the gpu)
