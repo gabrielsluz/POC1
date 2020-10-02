@@ -15,7 +15,7 @@ vagrant ssh
 Create a vagrant machine with singularity installed, than alter the memory limit for it on the Vagrantfile by adding:
  config.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
-     vb.memory = "15360" #Change here
+     vb.memory = "12054" #Change here
  end
  config.vm.synced_folder "datasets/", "/datasets"
 *Also create shared folder for datasets

@@ -4,10 +4,11 @@ Use a Singularity Container :)
 mkdir train_vince
 cd train_vince
 git clone https://github.com/gabrielsluz/POC1.git
-sudo singularity build train_vince.simg ./POC1/train_vince/Singularity
+sudo singularity build --sandbox train_vince ./POC1/train_vince/Singularity
 
-- Get into the container
-singularity shell -B /datasets/:/datasets/ mnist_test.simg 
+- Clone forked vince and get into the container
+git clone https://github.com/gabrielsluz/vince.git
+singularity shell -B /storage_path/:/datasets/ mnist_test.simg 
 python ./POC1/gpu_test/teste_gpu.py --epochs 1
 
 - To test on a server: **Always check everything needed

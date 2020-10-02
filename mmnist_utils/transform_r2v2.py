@@ -16,6 +16,7 @@ Where will it be saved ?
 import numpy as np
 from PIL import Image
 import os
+import sys
 
 NAME_EXAMPLE = '__2j5sXjpp0_001379.jpg'
 PREFIX_LEN = len('__') #Used as prefix for files and is the folder name
@@ -30,12 +31,18 @@ def gen_file_name(folder_path, prefix, video_num, frame_num):
     file_name += "_%06d.jpg" % frame_num #FRAME_NUM_LEN
     return file_name
 
-mmnist_dataset = np.load("mnist_test_seq.npy")
+
+base_dataset_path = sys.argv[1]
+print("Store dataset in: "  + base_dataset_path + '/mmnist_images/')
+mnist_npy_file = sys.argv[2]
+print("npy file location: " + mnist_npy_file)
+
+mmnist_dataset = np.load(mnist_npy_file)
 num_videos = mmnist_dataset.shape[1]
 num_videos_train = int(num_videos * 0.8) #Uses 80 percent as training
 
-folder_path = "./mmnist_images/train/"
-os.mkdir('./mmnist_images/')
+folder_path = base_dataset_path + "/mmnist_images/train/"
+os.mkdir(base_dataset_path + '/mmnist_images/')
 os.mkdir(folder_path)
 os.mkdir(folder_path + '__/')
 for i in range(num_videos_train):
