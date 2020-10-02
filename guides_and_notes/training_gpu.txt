@@ -1,4 +1,5 @@
 -| Important notes for training with a GPU remotely inside a Singularity container.
+Awesome tutorial: https://github.com/bdusell/singularity-tutorial
 
 Container:
 - Know how to stop the container
@@ -31,8 +32,12 @@ sudo singularity shell --writable mnist_test/
 git clone https://github.com/gabrielsluz/POC1.git
 pip install -r ./POC1/gpu_test/requirements.txt
 
+- Get out to not use sudo for innapropriate things
+CNTRL-d 
+singularity shell --writable mnist_test/
+
 - Create /MNIST dir
-mkdir /MNIST
+mkdir ~/MNIST
 
 - Bind the /srv/storage/datasets/gabrielsluz/ to /MNIST in the container
 CNTRL-d
