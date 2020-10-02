@@ -6,7 +6,7 @@ Container:
 - Use a .simg container to run experiments
 - Keep the container in image format in the home (network) folder
 - It may be needed to bind the /srv/storage/datasets/gabrielsluz/ to a folder in the container
-- Containers can only be created in proc2 or echer /srv/forge
+- Containers can only be created in specif servers and folders
 - Only use sudo when needed.
 
 GPU usage:
@@ -21,7 +21,15 @@ Storage:
     - The model may be a must.
     - Validation and training errors
 
--| Testing GPU - Generating image on local computer ** Was not able to find gpu
+GPU:
+It is easy to use GPUs with Singularity
+- Use a docker image from nvidia
+Bootstrap: docker
+From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+- Run the container with the --nv option
+
+-| Testing GPU - Generating image on local computer
+*Basically a container with the proper installation, but without the code or the datasets.
 -In the machine which has singularity,
 mkdir mnist_test
 cd mnist_test
@@ -33,18 +41,18 @@ singularity shell -B /datasets/:/datasets/ mnist_test.simg
 python ./POC1/gpu_test/teste_gpu.py --epochs 1
 
 -To test on a server: **Always check everything needed
-vpc to the server or just get the container to the server:
-    scp mnist_test.simg gabrielluz@login.dcc.ufmg.br:/home/grad/ccomp/17/gabrielluz/mnist_test.simg
-    
+scp to the server or just get the container to the server
 ssh
 git clone https://github.com/gabrielsluz/POC1.git
-singularity shell -B /srv/storage/datasets/gabrielsluz/:/datasets/ mnist_test.simg 
-python ./POC1/gpu_test/teste_gpu.py --epochs 1
+singularity shell -B /srv/storage/datasets/gabrielsluz/:/datasets/ --nv mnist_test.simg 
+python3 ./POC1/gpu_test/teste_gpu.py --epochs 1
 
 
 
 
--| Testing GPU:
+
+
+-| Testing GPU: *Not working
 - Create a singularity container in echer or proc2 /srv/forge (may need to be cuda container):
 sudo singularity build --sandbox mnist_test docker://python:3.6
 sudo singularity shell --writable mnist_test/
