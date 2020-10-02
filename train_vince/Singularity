@@ -3,7 +3,7 @@ From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
 %post
     apt-get update && apt-get install -y --no-install-recommends \
-    python3.8 \
+    python3.6 \
     python3-pip \
     && \
     apt-get clean && \
