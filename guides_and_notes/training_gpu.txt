@@ -3,9 +3,10 @@ Awesome tutorial: https://github.com/bdusell/singularity-tutorial
 
 Container:
 - Know how to stop the container
+- Prefer 
 - Use a .simg container to run experiments
 - Keep the container in image format in the home (network) folder
-- It may be needed to bind the /srv/storage/datasets/gabrielsluz/ to a folder in the container
+- It needs to bind the /srv/storage/datasets/gabrielsluz/ to a folder in the container
 - Containers can only be created in specif servers and folders
 - Only use sudo when needed.
 
