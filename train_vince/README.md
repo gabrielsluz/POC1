@@ -8,12 +8,7 @@ sudo singularity build --sandbox train_vince ./POC1/train_vince/Singularity
 
 - Clone forked vince and get into the container
 git clone https://github.com/gabrielsluz/vince.git
-singularity shell -B /storage_path/:/datasets/ mnist_test.simg 
-python ./POC1/gpu_test/teste_gpu.py --epochs 1
-
-- To test on a server: **Always check everything needed
-scp to the server or just get the container to the server
-ssh
-git clone https://github.com/gabrielsluz/POC1.git
-singularity shell -B /srv/storage/datasets/gabrielsluz/:/datasets/ --nv mnist_test.simg 
-python3 ./POC1/gpu_test/teste_gpu.py --epochs 1
+singularity shell -B /storage_path/:/datasets/ --nv /container_path/train_vince.simg
+chmod +x ./vince/vince/train_mmnist.sh
+cd ./vince
+./vince/train_mmnist.sh

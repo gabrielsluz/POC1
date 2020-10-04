@@ -1,4 +1,6 @@
 '''
+Hwo to call this program:
+python3 transform_r2_v2.py <path_to_put_the_generated_dataset_without_last_/> <npy_file_to_use>
 Transforms the Moving MNIST dataset from npy format to r2v2 directory format
 How is the r2v2 format ?
     The file name of an image format ".jpg" denotes its source video and frame number:
@@ -31,7 +33,6 @@ def gen_file_name(folder_path, prefix, video_num, frame_num):
     file_name += "_%06d.jpg" % frame_num #FRAME_NUM_LEN
     return file_name
 
-
 base_dataset_path = sys.argv[1]
 print("Store dataset in: "  + base_dataset_path + '/mmnist_images/')
 mnist_npy_file = sys.argv[2]
@@ -54,7 +55,7 @@ for i in range(num_videos_train):
         rgbimg.paste(im)
         rgbimg.save(file_name)
 
-folder_path = "./mmnist_images/val/"
+folder_path = base_dataset_path + "/mmnist_images/val/"
 os.mkdir(folder_path)
 os.mkdir(folder_path + '__/')
 for i in range(num_videos_train, num_videos):
