@@ -41,4 +41,4 @@ From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
     python3 -m pip install git+https://github.com/danielgordon10/dg_util.git
     python3 -m pip install MulticoreTSNE
 
-    mkdir datasets
+    mkdir -p datasets
