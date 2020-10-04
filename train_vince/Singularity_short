@@ -14,7 +14,7 @@ From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
     apt-get update -y
     apt-get install -y git
 
-    apt-get install libgtk2.0-dev
+    apt-get install libgtk2.0-dev -y
 
     python3 -m pip install attrs==19.3.0
     python3 -m pip install black==19.3b0
