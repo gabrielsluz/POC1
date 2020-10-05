@@ -20,5 +20,6 @@ From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
     python3 -m pip install gym==0.12.0
     python3 -m pip install atari-py==0.1.4
     python3 -m pip install matplotlib==3.0.2
+    python3 -m pip install h5py
 
     mkdir -p datasets

@@ -7,17 +7,20 @@ brew cask install vagrant-manager
 mkdir singularity-vm
 cd singularity-vm
 
+vagrant plugin install vagrant-disksize #Use this to increase the disk space
+
 vagrant init sylabs/singularity-2.5-ubuntu-bionic64
 vagrant up
 vagrant ssh
 
-
+Vagrant modifications:
 Create a vagrant machine with singularity installed, than alter the memory limit for it on the Vagrantfile by adding:
  config.vm.provider "virtualbox" do |vb|
      # Customize the amount of memory on the VM:
      vb.memory = "12054" #Change here
  end
  config.vm.synced_folder "datasets/", "/datasets"
+ config.disksize.size = '32GB'
 *Also create shared folder for datasets
 *This did not help immediately, I had to reload the machine using vagrant
 *This memory matter may become a problem
